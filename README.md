@@ -1,1 +1,0 @@
-# comortgfytry.github.io
