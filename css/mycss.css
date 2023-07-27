@@ -1,0 +1,44 @@
+/* 修改透明度 */
+/* 文章页背景 */
+.layout_post>#post {
+    /* 以下代表透明度为0.5 可以自行修改*/
+    background: rgba(255,255,255,.8);
+}
+
+/* 所有页面背景 */
+/* 深色模式 */
+[data-theme=dark] #aside_content .card-widget, #recent-posts>.recent-post-item, .layout_page>div:first-child:not(.recent-posts), .layout_post>#page, .layout_post>#post, .read-mode .layout_post>#post{
+    /* 以下代表透明度为0.5 */
+    background: rgba(255,255,255,.6);
+}
+/* 浅色模式 */
+#aside_content .card-widget, #recent-posts>.recent-post-item, .layout_page>div:first-child:not(.recent-posts), .layout_post>#page, .layout_post>#post, .read-mode .layout_post>#post{
+    /* 以下代表透明度为0.5 */
+    background: rgba(255,255,255,.6);
+}
+
+
+/* 博客背景 */
+#web_bg {
+    /* 背景图像的地址（url括号里）  */
+    background-image: url(/img/background.jpg);
+    /* 背景图像不重复 */ 
+    background-repeat: no-repeat;
+    /* 背景图像大小 */
+    background-size: cover;
+}
+
+/* 个人卡片 */
+/* 白天主题下的配置 */
+#aside-content>.card-widget.card-info {
+    /* 换成自己图片的地址 */
+    background-image: url(/img/bg.jpg);
+    background-repeat: no-repeat;
+    background-attachment: inherit;
+    background-size: 100%
+}
+/* 黑暗主题下的配置 */
+[data-theme=dark] #aside-content>.card-widget.card-info {
+    /*换成自己图片的地址*/
+    background-image: url(/img/bbg.jpg) ;
+}
