@@ -1,0 +1,240 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>mybatis | 有求必应</title><meta name="author" content="Mr.wu"><meta name="copyright" content="Mr.wu"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="一、简介 数据持久层框架 封装了通过JDBC访问数据库的操作 主要思想是将程序中的大量SQL语句剥离出来，配置在配置文件当中，实现SQL的灵活配置 好处是将SQL与程序代码分离，可以在不修改代码的情况下，直接在配置文件当中修改SQL。 半自动ORM映射工具（mybatis-plus是全自动）  二、mybatis工作原理1、四大核心对象（1）SqlSession包含了执行SQL语句的所有方法。类似">
+<meta property="og:type" content="article">
+<meta property="og:title" content="mybatis">
+<meta property="og:url" content="https://comortgfytry.github.io/pages/mybatis/mybatis.html">
+<meta property="og:site_name" content="有求必应">
+<meta property="og:description" content="一、简介 数据持久层框架 封装了通过JDBC访问数据库的操作 主要思想是将程序中的大量SQL语句剥离出来，配置在配置文件当中，实现SQL的灵活配置 好处是将SQL与程序代码分离，可以在不修改代码的情况下，直接在配置文件当中修改SQL。 半自动ORM映射工具（mybatis-plus是全自动）  二、mybatis工作原理1、四大核心对象（1）SqlSession包含了执行SQL语句的所有方法。类似">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://comortgfytry.github.io/img/avatar.jpg">
+<meta property="article:published_time" content="2023-12-07T03:28:18.000Z">
+<meta property="article:modified_time" content="2023-12-08T03:40:35.671Z">
+<meta property="article:author" content="Mr.wu">
+<meta property="article:tag" content="mybatis">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://comortgfytry.github.io/img/avatar.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://comortgfytry.github.io/pages/mybatis/mybatis.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":300},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":200,"languages":{"author":"作者: Mr.wu","link":"链接: ","source":"来源: 有求必应","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'mybatis',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: undefined,
+  isToc: true,
+  postUpdate: '2023-12-08 11:40:35'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/mycss.css"><style type="text/css"> #universe {  display: block; position: fixed; margin: 0; padding: 0; border: 0; outline: 0; left: 0; top: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1; } </style><meta name="generator" content="Hexo 6.3.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">59</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">26</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">20</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-bookmark"></i><span> 博文</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-archive"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-folder-open"></i><span> 归档</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/comment/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> 关于我</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://api.aqcoder.cn/random')"><nav id="nav"><span id="blog-info"><a href="/" title="有求必应"><span class="site-name">有求必应</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-bookmark"></i><span> 博文</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-archive"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-folder-open"></i><span> 归档</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/comment/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> 关于我</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">mybatis</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-12-07T03:28:18.000Z" title="发表于 2023-12-07 11:28:18">2023-12-07</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-12-08T03:40:35.671Z" title="更新于 2023-12-08 11:40:35">2023-12-08</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/mybatis/">mybatis</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">1.2k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>4分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="mybatis"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="一、简介"><a href="#一、简介" class="headerlink" title="一、简介"></a>一、简介</h1><ul>
+<li>数据持久层框架</li>
+<li>封装了通过JDBC访问数据库的操作</li>
+<li>主要思想是将程序中的大量SQL语句剥离出来，配置在配置文件当中，实现SQL的灵活配置</li>
+<li>好处是将SQL与程序代码分离，可以在不修改代码的情况下，直接在配置文件当中修改SQL。</li>
+<li>半自动ORM映射工具（mybatis-plus是全自动）</li>
+</ul>
+<h1 id="二、mybatis工作原理"><a href="#二、mybatis工作原理" class="headerlink" title="二、mybatis工作原理"></a>二、mybatis工作原理</h1><h2 id="1、四大核心对象"><a href="#1、四大核心对象" class="headerlink" title="1、四大核心对象"></a>1、四大核心对象</h2><h3 id="（1）SqlSession"><a href="#（1）SqlSession" class="headerlink" title="（1）SqlSession"></a>（1）SqlSession</h3><p>包含了执行SQL语句的所有方法。类似于JDBC里面的Connection</p>
+<blockquote>
+<p>注意：虽然其包含了执行SQL语句的所有方法，但其还有getMapper方法来获取mapper接口的代理对象。所以它是委托Executor执行sql的。</p>
+</blockquote>
+<h3 id="（2）Executor接口"><a href="#（2）Executor接口" class="headerlink" title="（2）Executor接口"></a>（2）Executor接口</h3><p>根据SqlSession传递的参数动态地生成需要执行的SQL语句，同时负责查询缓存的维护</p>
+<h3 id="（3）MappedStatement"><a href="#（3）MappedStatement" class="headerlink" title="（3）MappedStatement"></a>（3）MappedStatement</h3><p>对映射SQL的封装，用于存储要映射的SQL语句的id、参数等信息。在Executor接口的执行方法中就有一个MappedStatement类型的参数。</p>
+<h3 id="（4）ResultHandler"><a href="#（4）ResultHandler" class="headerlink" title="（4）ResultHandler"></a>（4）ResultHandler</h3><p>用于对返回的结果进行处理，最终得到自己想要的数据格式或类型。可以自定义返回类型</p>
+<h2 id="2、工作流程"><a href="#2、工作流程" class="headerlink" title="2、工作流程"></a>2、工作流程</h2><p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/pages/mybatis/mybatis/image.png" alt="image"></p>
+<h2 id="3、实际使用范例"><a href="#3、实际使用范例" class="headerlink" title="3、实际使用范例"></a>3、实际使用范例</h2><h3 id="（1）配置"><a href="#（1）配置" class="headerlink" title="（1）配置"></a>（1）配置</h3><ul>
+<li>mybatis-config.xml 配置数据库连接和mapper</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://mybatis.org/mybatis-3/zh/getting-started.html">参考官方文档</a></p>
+<h3 id="（2）编码"><a href="#（2）编码" class="headerlink" title="（2）编码"></a>（2）编码</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">mapper</span> <span class="attr">namespace</span>=<span class="string">&quot;test&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">&quot;selectAll&quot;</span> <span class="attr">resultType</span>=<span class="string">&quot;org.example.pojo.User&quot;</span>&gt;</span></span><br><span class="line">        select * from User;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">mapper</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">String</span> <span class="variable">resource</span> <span class="operator">=</span> <span class="string">&quot;mybatis-config.xml&quot;</span>;</span><br><span class="line"><span class="type">InputStream</span> <span class="variable">inputStream</span> <span class="operator">=</span> Resources.getResourceAsStream(resource);</span><br><span class="line"><span class="type">SqlSessionFactory</span> <span class="variable">sqlSessionFactory</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">SqlSessionFactoryBuilder</span>().build(inputStream);</span><br><span class="line"></span><br><span class="line"><span class="type">SqlSession</span> <span class="variable">sqlSession</span> <span class="operator">=</span> sqlSessionFactory.openSession();</span><br><span class="line"></span><br><span class="line">List&lt;User&gt; users = sqlSession.selectList(<span class="string">&quot;test.selectAll&quot;</span>);</span><br><span class="line"></span><br><span class="line">System.out.println(users);</span><br><span class="line"></span><br><span class="line">sqlSession.close();</span><br></pre></td></tr></table></figure>
+
+<h1 id="三、mybatis-config-xml"><a href="#三、mybatis-config-xml" class="headerlink" title="三、mybatis-config.xml"></a>三、mybatis-config.xml</h1><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=<span class="string">&quot;1.0&quot;</span> encoding=<span class="string">&quot;UTF-8&quot;</span> ?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">configuration</span></span></span><br><span class="line"><span class="meta">        <span class="keyword">PUBLIC</span> <span class="string">&quot;-//mybatis.org//DTD Config 3.0//EN&quot;</span></span></span><br><span class="line"><span class="meta">        <span class="string">&quot;https://mybatis.org/dtd/mybatis-3-config.dtd&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--类型别名(使用后mapper的返回类型默认为类名)--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">typeAliases</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">package</span> <span class="attr">name</span>=<span class="string">&quot;org.example.pojo&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">typeAliases</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">environments</span> <span class="attr">default</span>=<span class="string">&quot;development&quot;</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!--可以配置多个环境，通过default切换--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">environment</span> <span class="attr">id</span>=<span class="string">&quot;development&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">transactionManager</span> <span class="attr">type</span>=<span class="string">&quot;JDBC&quot;</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">dataSource</span> <span class="attr">type</span>=<span class="string">&quot;POOLED&quot;</span>&gt;</span></span><br><span class="line">                <span class="comment">&lt;!--数据库连接信息--&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;driver&quot;</span> <span class="attr">value</span>=<span class="string">&quot;com.mysql.cj.jdbc.Driver&quot;</span>/&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;url&quot;</span> <span class="attr">value</span>=<span class="string">&quot;jdbc:mysql://47.109.104.142:53306/mybatisDemo&quot;</span>/&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;username&quot;</span> <span class="attr">value</span>=<span class="string">&quot;root&quot;</span>/&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;password&quot;</span> <span class="attr">value</span>=<span class="string">&quot;930516&quot;</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">dataSource</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">environment</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">environments</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">mappers</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">mapper</span> <span class="attr">resource</span>=<span class="string">&quot;org/example/mapper/testMapper.xml&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">mappers</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="四、Mapper代理开发"><a href="#四、Mapper代理开发" class="headerlink" title="四、Mapper代理开发"></a>四、Mapper代理开发</h1><h3 id="1、结果封装"><a href="#1、结果封装" class="headerlink" title="1、结果封装"></a>1、结果封装</h3><blockquote>
+<p>查询结果如果要封装成对象属性，那么名称要一样，否则不能自动封装</p>
+<p>解决方法：</p>
+<blockquote>
+<p>取别名<br><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/pages/mybatis/mybatis/image1.png" alt="image1"><br>避免每次取别名<br><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/pages/mybatis/mybatis/image2.png" alt="image2"></p>
+</blockquote>
+<blockquote>
+<p>resultMap（id：主键映射；result：一般字段映射）<br><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/pages/mybatis/mybatis/image3.png" alt="image3"></p>
+</blockquote>
+</blockquote>
+<h3 id="2、传入参数"><a href="#2、传入参数" class="headerlink" title="2、传入参数"></a>2、传入参数</h3><p> #{}和${}</p>
+<p> #{} 被解析成预编译语句，预编译之后可以直接执行，不需要重新编译sql。</p>
+<p> ${}仅仅为一个字符串替换，每次执行sql之前需要进行编译，存在 sql 注入问题。</p>
+<h4 id="（1）预编译"><a href="#（1）预编译" class="headerlink" title="（1）预编译"></a>（1）预编译</h4><p>mybatis是通过 PreparedStatement 和占位符来实现预编译的。</p>
+<p>mybatis底层使用 PreparedStatement ，默认情况下，将对所有的sql进行预编译，将#{}替换为?，然 后将带有占位符?的sql模板发送至mysql服务器，由服务器对此无参数的sql进行编译后，将编译结果缓存，然后直接执行带有真实参数的sql。</p>
+<p>把一个 sql 预编译后产生的 PreparedStatement 对象缓存下来， 下次对于同一个sql，可以直接使用这个缓存的 PreparedState 对象。</p>
+<h4 id="（2）传参方式"><a href="#（2）传参方式" class="headerlink" title="（2）传参方式"></a>（2）传参方式</h4><ul>
+<li><p>散装参数</p>
+</li>
+<li><p>实体类</p>
+</li>
+<li><p>map</p>
+</li>
+</ul>
+<p><code>Map&lt;String, Object&gt; map </code></p>
+<blockquote>
+<p>注意：传入多个参数时，List、Array、Collection都封装为map并且对应两个key：param，arg。可以使用@param修改param键名</p>
+</blockquote>
+<h3 id="3、特殊符号"><a href="#3、特殊符号" class="headerlink" title="3、特殊符号"></a>3、特殊符号</h3><ul>
+<li>使用 CDATA区<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">&quot;selectGender&quot;</span> <span class="attr">resultMap</span>=<span class="string">&quot;userMap&quot;</span>&gt;</span></span><br><span class="line">        select * from User where gender</span><br><span class="line">        &lt;![CDATA[</span><br><span class="line">            &gt;</span><br><span class="line">        ]]&gt;</span><br><span class="line">        #&#123;gender&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+<li>转义字符<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;	 &amp;lt;        小于号 </span><br><span class="line">&gt;    &amp;gt;        大于号  </span><br><span class="line">&amp;    &amp;amp;       和  </span><br><span class="line">&#x27;    &amp;apos;      单引号  </span><br><span class="line">&quot;    &amp;quot;      双引号  </span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="4、动态SQL"><a href="#4、动态SQL" class="headerlink" title="4、动态SQL"></a>4、动态SQL</h3><h4 id="（1）if标签"><a href="#（1）if标签" class="headerlink" title="（1）if标签"></a>（1）if标签</h4><p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/pages/mybatis/mybatis/image4.png" alt="image4"></p>
+<h4 id="（2）choose标签"><a href="#（2）choose标签" class="headerlink" title="（2）choose标签"></a>（2）choose标签</h4><p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/pages/mybatis/mybatis/image5.png" alt="image5"></p>
+<h4 id="（3）set标签（where类似-吗）"><a href="#（3）set标签（where类似-吗）" class="headerlink" title="（3）set标签（where类似  吗）"></a>（3）set标签（where类似  吗）</h4><p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/pages/mybatis/mybatis/image7.png" alt="image7"></p>
+<h4 id="（4）foreach标签"><a href="#（4）foreach标签" class="headerlink" title="（4）foreach标签"></a>（4）foreach标签</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--对于数组参数，mybatis会将其封装成map，key=array（可以通过@param指定key的名称），value=数组--&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">delete</span> <span class="attr">id</span>=<span class="string">&quot;deleteByIds&quot;</span>&gt;</span></span><br><span class="line">       delete from User where id</span><br><span class="line">       in</span><br><span class="line">           <span class="tag">&lt;<span class="name">foreach</span> <span class="attr">collection</span>=<span class="string">&quot;array&quot;</span> <span class="attr">item</span>=<span class="string">&quot;id&quot;</span> <span class="attr">separator</span>=<span class="string">&quot;,&quot;</span> <span class="attr">open</span>=<span class="string">&quot;(&quot;</span> <span class="attr">close</span>=<span class="string">&quot;)&quot;</span>&gt;</span></span><br><span class="line">               #&#123;id&#125;</span><br><span class="line">           <span class="tag">&lt;/<span class="name">foreach</span>&gt;</span>;</span><br><span class="line">   <span class="tag">&lt;/<span class="name">delete</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="5、添加操作的主键返回"><a href="#5、添加操作的主键返回" class="headerlink" title="5、添加操作的主键返回"></a>5、添加操作的主键返回</h3><p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/pages/mybatis/mybatis/image6.png" alt="image6"></p>
+<h1 id="五、注解开发"><a href="#五、注解开发" class="headerlink" title="五、注解开发"></a>五、注解开发</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">@Select</span><br><span class="line"></span><br><span class="line">@Insert</span><br><span class="line"></span><br><span class="line">@Update</span><br><span class="line"></span><br><span class="line">@Delete</span><br></pre></td></tr></table></figure>
+
+<h1 id="六、基于SpringBoot使用Mybatis"><a href="#六、基于SpringBoot使用Mybatis" class="headerlink" title="六、基于SpringBoot使用Mybatis"></a>六、基于SpringBoot使用Mybatis</h1><ul>
+<li><p>数据库连接配置到application.yaml中</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">datasource:</span></span><br><span class="line">    <span class="attr">url:</span> <span class="string">jdbc:mysql://****:****/hotel?useSSL=true</span></span><br><span class="line">    <span class="attr">username:</span> <span class="string">root</span></span><br><span class="line">    <span class="attr">password:</span>  <span class="string">****</span></span><br><span class="line">    <span class="attr">driver-class-name:</span> <span class="string">com.mysql.cj.jdbc.Driver</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用<code>@Mapper</code>注解标注mapper接口类。运行时自动生成其实现类对象并交给IOC容器</p>
+</li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="https://comortgfytry.github.io">Mr.wu</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://comortgfytry.github.io/pages/mybatis/mybatis.html">https://comortgfytry.github.io/pages/mybatis/mybatis.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://comortgfytry.github.io" target="_blank">有求必应</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/mybatis/">mybatis</a></div><div class="post_share"><div class="social-share" data-image="/img/avatar.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-full"><a href="/pages/%E7%AE%97%E6%B3%95/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/%E6%90%9C%E7%B4%A2%E4%BA%8C%E7%BB%B4%E7%9F%A9%E9%98%B5.html" title="搜索二维矩阵 - 算法 - 二分查找"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">搜索二维矩阵 - 算法 - 二分查找</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Mr.wu</div><div class="author-info__description">分享知识</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">59</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">26</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">20</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/xxxxxx" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="https://blog.csdn.net/blue_gym" target="_blank" title="CSDN"><i class="fa fa-book-open"></i></a><a class="social-icon" href="mailto:shouwangyinying@163.com" target="_blank" title="Email"><i class="fas fa-envelope-open-text"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">Nice to meet you. please get website connection by Ctrl + F5</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E7%AE%80%E4%BB%8B"><span class="toc-number">1.</span> <span class="toc-text">一、简介</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8C%E3%80%81mybatis%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86"><span class="toc-number">2.</span> <span class="toc-text">二、mybatis工作原理</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1%E3%80%81%E5%9B%9B%E5%A4%A7%E6%A0%B8%E5%BF%83%E5%AF%B9%E8%B1%A1"><span class="toc-number">2.1.</span> <span class="toc-text">1、四大核心对象</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%881%EF%BC%89SqlSession"><span class="toc-number">2.1.1.</span> <span class="toc-text">（1）SqlSession</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%882%EF%BC%89Executor%E6%8E%A5%E5%8F%A3"><span class="toc-number">2.1.2.</span> <span class="toc-text">（2）Executor接口</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%883%EF%BC%89MappedStatement"><span class="toc-number">2.1.3.</span> <span class="toc-text">（3）MappedStatement</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%884%EF%BC%89ResultHandler"><span class="toc-number">2.1.4.</span> <span class="toc-text">（4）ResultHandler</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2%E3%80%81%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B"><span class="toc-number">2.2.</span> <span class="toc-text">2、工作流程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3%E3%80%81%E5%AE%9E%E9%99%85%E4%BD%BF%E7%94%A8%E8%8C%83%E4%BE%8B"><span class="toc-number">2.3.</span> <span class="toc-text">3、实际使用范例</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%881%EF%BC%89%E9%85%8D%E7%BD%AE"><span class="toc-number">2.3.1.</span> <span class="toc-text">（1）配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%882%EF%BC%89%E7%BC%96%E7%A0%81"><span class="toc-number">2.3.2.</span> <span class="toc-text">（2）编码</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%89%E3%80%81mybatis-config-xml"><span class="toc-number">3.</span> <span class="toc-text">三、mybatis-config.xml</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9B%9B%E3%80%81Mapper%E4%BB%A3%E7%90%86%E5%BC%80%E5%8F%91"><span class="toc-number">4.</span> <span class="toc-text">四、Mapper代理开发</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E3%80%81%E7%BB%93%E6%9E%9C%E5%B0%81%E8%A3%85"><span class="toc-number">4.0.1.</span> <span class="toc-text">1、结果封装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E3%80%81%E4%BC%A0%E5%85%A5%E5%8F%82%E6%95%B0"><span class="toc-number">4.0.2.</span> <span class="toc-text">2、传入参数</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%EF%BC%881%EF%BC%89%E9%A2%84%E7%BC%96%E8%AF%91"><span class="toc-number">4.0.2.1.</span> <span class="toc-text">（1）预编译</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%EF%BC%882%EF%BC%89%E4%BC%A0%E5%8F%82%E6%96%B9%E5%BC%8F"><span class="toc-number">4.0.2.2.</span> <span class="toc-text">（2）传参方式</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3%E3%80%81%E7%89%B9%E6%AE%8A%E7%AC%A6%E5%8F%B7"><span class="toc-number">4.0.3.</span> <span class="toc-text">3、特殊符号</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4%E3%80%81%E5%8A%A8%E6%80%81SQL"><span class="toc-number">4.0.4.</span> <span class="toc-text">4、动态SQL</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%EF%BC%881%EF%BC%89if%E6%A0%87%E7%AD%BE"><span class="toc-number">4.0.4.1.</span> <span class="toc-text">（1）if标签</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%EF%BC%882%EF%BC%89choose%E6%A0%87%E7%AD%BE"><span class="toc-number">4.0.4.2.</span> <span class="toc-text">（2）choose标签</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%EF%BC%883%EF%BC%89set%E6%A0%87%E7%AD%BE%EF%BC%88where%E7%B1%BB%E4%BC%BC-%E5%90%97%EF%BC%89"><span class="toc-number">4.0.4.3.</span> <span class="toc-text">（3）set标签（where类似  吗）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%EF%BC%884%EF%BC%89foreach%E6%A0%87%E7%AD%BE"><span class="toc-number">4.0.4.4.</span> <span class="toc-text">（4）foreach标签</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5%E3%80%81%E6%B7%BB%E5%8A%A0%E6%93%8D%E4%BD%9C%E7%9A%84%E4%B8%BB%E9%94%AE%E8%BF%94%E5%9B%9E"><span class="toc-number">4.0.5.</span> <span class="toc-text">5、添加操作的主键返回</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E6%B3%A8%E8%A7%A3%E5%BC%80%E5%8F%91"><span class="toc-number">5.</span> <span class="toc-text">五、注解开发</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%AD%E3%80%81%E5%9F%BA%E4%BA%8ESpringBoot%E4%BD%BF%E7%94%A8Mybatis"><span class="toc-number">6.</span> <span class="toc-text">六、基于SpringBoot使用Mybatis</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/pages/mybatis/mybatis.html" title="mybatis">mybatis</a><time datetime="2023-12-07T03:28:18.000Z" title="发表于 2023-12-07 11:28:18">2023-12-07</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/pages/%E7%AE%97%E6%B3%95/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/%E6%90%9C%E7%B4%A2%E4%BA%8C%E7%BB%B4%E7%9F%A9%E9%98%B5.html" title="搜索二维矩阵 - 算法 - 二分查找">搜索二维矩阵 - 算法 - 二分查找</a><time datetime="2023-12-04T04:50:20.000Z" title="发表于 2023-12-04 12:50:20">2023-12-04</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/pages/%E7%AE%97%E6%B3%95/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/%E6%90%9C%E7%B4%A2%E6%8F%92%E5%85%A5%E4%BD%8D%E7%BD%AE.html" title="搜索插入位置 - 算法 - 二分查找">搜索插入位置 - 算法 - 二分查找</a><time datetime="2023-12-04T03:50:20.000Z" title="发表于 2023-12-04 11:50:20">2023-12-04</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/pages/%E7%AE%97%E6%B3%95/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/%E6%89%93%E5%AE%B6%E5%8A%AB%E8%88%8D.html" title="打家劫舍">打家劫舍</a><time datetime="2023-11-20T03:43:20.000Z" title="发表于 2023-11-20 11:43:20">2023-11-20</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/pages/JavaWeb/nginx.html" title="nginx">nginx</a><time datetime="2023-11-15T07:50:20.000Z" title="发表于 2023-11-15 15:50:20">2023-11-15</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('https://api.aqcoder.cn/random')"><div id="footer-wrap"><div class="copyright">&copy;2023 By Mr.wu</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><div class="js-pjax"></div><canvas id="universe"></canvas>'<script src="/js/universe.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div class="no-result" id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div><script async>window.onload=function(){var a=document.createElement('script'),b=document.getElementsByTagName('script')[0];a.type='text/javascript',a.async=!0,a.src='/sw-register.js?v='+Date.now(),b.parentNode.insertBefore(a,b)};</script></body></html>
